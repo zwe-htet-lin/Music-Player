@@ -1,0 +1,348 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root{
+    --pink: #ff74a4;
+    --violet: #9f6ea3;
+    --lightblack: #515C6F;
+    --white: #ffffff;
+    --darkwhite: #cecaca;
+    --pinkshadow: #ffcbdd;
+    --lightbshadow: rgba(0,0,0,0.15);
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--lightblack);
+}
+
+.container i{
+    cursor: pointer;
+}
+
+.container{
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    width: 380px;
+    padding: 15px 25px;
+    border-radius: 15px;
+    background: var(--white);
+    box-shadow: 0px 6px 15px var(--lightbshadow);
+} 
+
+.topBar, 
+.timer,
+.controls,
+.musicList .header,
+.musicList ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topBar i{
+    user-select: none;
+    color: var(--lightblack);
+}
+
+.topBar .arrowDown{
+    margin-left: -10px;
+    font-size: 27px;
+}
+
+.volume{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -8px;
+}
+
+.volume i{
+    font-size: 20px;
+}
+
+.volume .volumeOff{
+    display: none;
+}
+
+.topBar .loveIconFill{
+    display: none;
+    color: #F02849 !important;
+}
+
+.volumeSlider{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    width: 170px;
+    height: 6px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--darkwhite) 0%, var(--lightblack) 100%);
+}
+
+.volumeSlider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(270deg, var(--darkwhite) 0%, var(--lightblack) 100%);
+}
+
+.volumeSlider:focus{
+    border: 0;
+    outline: none;
+}
+
+.imageArea{
+    user-select: none;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-top: 15px;
+    box-shadow: 0px 6px 12px var(--lightbshadow);
+}
+
+.imageArea img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.songDetail{
+    text-align: center;
+    margin-top: 18px;
+    margin-bottom: 14px;
+    cursor: default;
+}
+
+.songDetail p{
+    color: var(--lightblack);
+}
+
+.songDetail .name{
+    font-size: 22px;
+}
+
+.songDetail .anime{
+    font-size: 17px;
+    opacity: 0.9;
+    line-height: 33px;
+}
+
+.progressArea{
+    width: 100%;
+    height: 6px;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+.progressBar{
+    width: 0px;
+    height: inherit;
+    border-radius: inherit;
+    position: relative;
+    background: linear-gradient(90deg, var(--pink) 0%, var(--violet) 100%);
+}
+
+.progressBar::before{
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: inherit;
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.progressArea:hover .progressBar::before{
+    opacity: 1;
+}
+
+.timer{
+    margin-top: 4px;
+}
+
+.timer span{
+    font-size: 13px;
+    color: var(--lightblack);
+}
+
+.controls{
+    margin-top: 15px;
+}
+
+.controls i{
+    font-size: 25px;
+    user-select: none;
+    background: linear-gradient( var(--pink) 0%, var(--violet) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.controls .previous,
+.controls .next{
+    font-size: 40px;
+} 
+
+.controls .previous{
+    margin-right: -13px;
+}
+
+.controls .next{
+    margin-left: -13px;
+}
+
+.controls .playPause{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; 
+    background: linear-gradient(var(--white) 0%, var(--darkwhite) 100%);
+    box-shadow: 0px 0px 5px var(--pink);
+}
+
+.playPause::before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: inherit;
+    background: linear-gradient(var(--pink) 0%, var(--violet) 100%);
+}
+
+.playPause i{
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    background: inherit;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.playPause .pause{
+    display: none;
+}
+
+.musicList{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0px -5px 10px rgba(0,0,0,0.1);
+    background: var(--white);
+    transition: all 0.3s ease-out;
+}
+
+.hide{
+    bottom: -50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.show{
+    bottom: 0;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.header .row{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: var(--lightblack);
+}
+
+.header .row span{
+    margin-left: 5px;
+}
+
+.header .row i{
+    cursor: default;
+}
+
+.header .close{
+    font-size: 22px;
+    color: var(--lightblack);
+} 
+
+.musicList ul{
+    margin-top: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.musicList ul::-webkit-scrollbar{
+    width: 0px;
+}
+
+.musicList ul li{
+    list-style: none;
+    display: flex;
+    cursor: pointer;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    color: var(--lightblack);
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.musicList ul li:last-child{
+    border-bottom: 0px;
+}
+
+.musicList ul li .row p:first-child{
+    font-size: 19px;
+}
+
+.musicList ul li .row p:last-child{
+    opacity: 0.8;
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+.musicList ul li .audioDuration{
+    font-size: 17px;
+}
+
+ul li.playing{
+    pointer-events: none;
+    color: var(--violet);
+}
+
+@media screen and (max-width: 380px) {
+    .container{
+        width: 100%;
+        padding: 20px 25px;
+        position: absolute;
+        top: 0;
+    }
+}
+/* box-shadow: -400px 0 0 400px var(--pink); */
